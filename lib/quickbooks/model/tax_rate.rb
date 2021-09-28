@@ -11,7 +11,7 @@ module Quickbooks
       xml_accessor :name, :from => "Name"
       xml_accessor :description, :from => "Description"
       xml_accessor :active?, :from => "Active"
-      xml_accessor :rate_value, :from => "RateValue", :as => BigDecimal, :to_xml => :to_f.to_proc
+      xml_accessor :rate_value, :from => "RateValue", :as => BigDecimal, to_xml: -> (v) { v.nil? ? nil : v.to_f }
       xml_accessor :agency_ref, :from => "AgencyRef", :as => BaseReference
       xml_accessor :tax_return_line_ref, :from => "TaxReturnLineRef", :as => BaseReference
       xml_accessor :special_tax_type, :from => "SpecialTaxType"
